@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+  <h2>Enregistrer un étudiant</h2>
+<form method="post" th:action="@{/save}" th:object="${student}">
+		<div class="form-group">
+			<label for="firstNameLabel">Prénom</label>
+	        <input id="firstName" class="form-control" placeholder="Entrez un prénom" required type="text" th:field="*{firstName}"/>
+        </div>
+		<div class="form-group">
+			<label for="lastNameLabel">Nom</label>		        
+        	<input id="lastName" class="form-control" placeholder="Entrez un nom" required type="text" th:field="*{lastName}"/>
+		</div>
+		<div class="form-group">		
+    		<input type="submit" value="Enregistrer un étudiant" class="btn btn-primary">
+    	</div>
+</form>
+</div>
+</body>
+</html>
