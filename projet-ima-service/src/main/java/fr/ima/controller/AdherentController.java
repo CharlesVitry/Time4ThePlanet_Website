@@ -45,7 +45,7 @@ public class AdherentController {
 	}
 	
 	@GetMapping("/adherent/{id}")
-	public HttpEntity<Adherents> getStudentDetail(@PathVariable String id) {
+	public HttpEntity<Adherents> getAdherentsDetail(@PathVariable String id) {
 		
 		Optional<Adherent> e = adherentRepository.findById(new Long(id));
 
@@ -58,7 +58,7 @@ public class AdherentController {
 	}	
 	
 	@PostMapping("/adherent/create")
-	public HttpEntity<Adherents> createStudent(@RequestBody Adherents adherents) {  // Créer un objet Adherents ici pour passer les valeurs
+	public HttpEntity<Adherents> createAdherents(@RequestBody Adherents adherents) {  // Créer un objet Adherents ici pour passer les valeurs
 		
 		
 		if (!StringUtils.hasText(adherents.getLastName()) || !StringUtils.hasText(adherents.getFirstName())) {
@@ -78,7 +78,7 @@ public class AdherentController {
 	}
 	
 	@PutMapping("/adherent/update")
-	public HttpEntity<Adherents> updateAdherents(@RequestBody Adherents student) {
+	public HttpEntity<Adherents> updateAdherents(@RequestBody Adherents adherents) {
 		return null;
 	}	
 

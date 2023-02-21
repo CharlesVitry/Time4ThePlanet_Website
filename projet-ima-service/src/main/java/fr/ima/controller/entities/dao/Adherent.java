@@ -23,8 +23,7 @@ public class Adherent {
 	
 	private boolean residentFrancais; 
 	private boolean affichageLister;
-
-
+	
 	private String email;
 
 	private String hash_mdp;

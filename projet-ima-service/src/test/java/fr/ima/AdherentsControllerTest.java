@@ -71,13 +71,14 @@ public class AdherentsControllerTest {
     	
     	
     	Adherents dummy = new Adherents();
+    	dummy.setGender("H");
     	dummy.setLastName("MACRON");
     	dummy.setFirstName("Emmanuel");
     	dummy.setBirthDate(DateUtil.parse("1977-12-21"));
     	dummy.setResidentFrench(true);
     	dummy.setPrintListing(true);
-    	
-    	dummy.setNumberParts(51);
+    	dummy.setE_mail("macron@yahoo.fr");
+    	dummy.setHash_pass("hash_pass");
     	
     	Address address = new Address();
     	address.setStreet("57 rue du Faubourg-Saint-Honoré");
