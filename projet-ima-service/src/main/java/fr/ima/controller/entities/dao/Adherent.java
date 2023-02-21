@@ -14,25 +14,31 @@ import javax.persistence.OneToOne;
 public class Adherent {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private int id;
+
+	private String civilite;
 	private String prenom;
 	private String nom;
 	private Date dateNaissance; 
 	
 	private boolean residentFrancais; 
 	private boolean affichageLister;
-	
-	private int nbrParts; 
+
+
+	private String email;
+
+	private String hash_mdp;
+
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "adresse_id")
 	private Adresse adresse;
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -76,13 +82,14 @@ public class Adherent {
 		this.affichageLister = affichageLister;
 	}
 
-	public int getNbrParts() {
-		return nbrParts;
+	public String getCivilite() {
+		return civilite;
 	}
 
-	public void setNbrParts(int nbrParts) {
-		this.nbrParts = nbrParts;
+	public void setCivilite(String civilite) {
+		this.civilite = civilite;
 	}
+
 
 	public Adresse getAdresse() {
 		return adresse;
@@ -90,6 +97,22 @@ public class Adherent {
 
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getHash_mdp() {
+		return hash_mdp;
+	}
+
+	public void setHash_mdp(String hash_mdp) {
+		this.hash_mdp = hash_mdp;
 	}
 	
 	

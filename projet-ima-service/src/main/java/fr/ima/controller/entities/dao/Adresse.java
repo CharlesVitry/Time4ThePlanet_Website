@@ -10,7 +10,7 @@ public class Adresse {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private int id;
 	private String rue;
 	private String codePostal;
 	private String ville;
@@ -33,10 +33,10 @@ public class Adresse {
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}		
 }

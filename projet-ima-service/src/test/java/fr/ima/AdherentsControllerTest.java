@@ -92,7 +92,7 @@ public class AdherentsControllerTest {
     	ResponseEntity<Adherents> response = testRestTemplate.postForEntity("http://localhost:"+port+"/adherent/create", dummy, Adherents.class);
     	assertTrue(response.getBody() != null);
     	
-    	identifiant_adherent = response.getBody().getIdentifiant_adherent();
+    	identifiant_adherent = String.valueOf(response.getBody().getIdentifiant_adherent());
     	
     	assertTrue(response.getStatusCode().equals(HttpStatus.CREATED));
      }    

@@ -94,8 +94,10 @@ public class AdherentController {
 		adherent.setDateNaissance(adherents.getBirthDate());
 		adherent.setResidentFrancais(adherents.isResidentFrench());
 		adherent.setAffichageLister(adherents.isPrintListing());
-		adherent.setNbrParts(adherents.getNumberParts());
-				
+		adherent.setEmail(adherents.getE_mail());
+		adherent.setCivilite(adherents.getGender());
+		adherent.setHash_mdp(adherents.getHash_pass());
+
 		// Créé une nouvelle instance d'adresse sans se soucier
 		// de savoir si une même adresse existe déjà
 		if (adherents.getAdress() != null) {
@@ -123,8 +125,11 @@ public class AdherentController {
 		adherents.setBirthDate(adherent.getDateNaissance());
 		adherents.setPrintListing(adherent.isAffichageLister());
 		adherents.setResidentFrench(adherent.isResidentFrancais());
-		adherents.setIdentifiant_adherent(Long.toString(adherent.getId().longValue()));
-		adherents.setNumberParts(adherent.getNbrParts());
+		adherents.setIdentifiant_adherent(adherent.getId());
+		adherents.setE_mail(adherent.getEmail());
+		adherents.setGender(adherent.getCivilite());
+		adherents.setHash_pass(adherent.getHash_mdp());
+
 		
 		Address address = new Address();
 		address.setStreet(adherent.getAdresse().getRue());
