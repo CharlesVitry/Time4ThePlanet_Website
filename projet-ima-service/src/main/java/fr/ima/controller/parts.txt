@@ -1,0 +1,33 @@
+@RestController
+@RequestMapping("/api/parts")
+public class PartsController {
+
+    @Autowired
+    private PartsRepository partsRepository;
+
+    @GetMapping
+    public List<Parts> getAllParts() {
+        return partsRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Parts getPartsById(@PathVariable int id) {
+        return partsRepository.findById(id).orElse(null);
+    }
+
+    @PostMapping
+    public Parts createParts(@RequestBody Parts parts) {
+        return partsRepository.save(parts);
+    }
+
+    @PutMapping("/{id}")
+    public Parts updateParts(@PathVariable int id, @RequestBody Parts parts) {
+        parts.setId(id);
+        return partsRepository.save(parts);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteParts(@PathVariable int id) {
+        partsRepository.deleteById(id);
+    }
+}
