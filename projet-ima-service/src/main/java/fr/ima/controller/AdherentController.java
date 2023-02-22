@@ -87,7 +87,7 @@ public class AdherentController {
 	 * @param adherents
 	 * @return
 	 */
-	private Adherent createDAOFromAdherentsDTO(Adherents adherents) {
+	public Adherent createDAOFromAdherentsDTO(Adherents adherents) {
 		Adherent adherent = new Adherent();
 		adherent.setPrenom(adherents.getFirstName());
 		adherent.setNom(adherents.getLastName());

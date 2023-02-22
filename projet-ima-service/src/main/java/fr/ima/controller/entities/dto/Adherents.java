@@ -2,8 +2,6 @@ package fr.ima.controller.entities.dto;
 
 import java.util.Date;
 
-import fr.ima.controller.entities.dao.Adresse;
-
 public class Adherents {
 
 	private String gender;
@@ -20,10 +18,11 @@ public class Adherents {
 	
 	private Address adress;
 
+    public Adherents() {
+    }
 
 
-
-	public String getFirstName() {
+    public String getFirstName() {
 		return firstName;
 	}
 
