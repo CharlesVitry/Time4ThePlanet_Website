@@ -8,7 +8,6 @@ import fr.ima.ihm.service.dto.Address;
 
 public class Adherents {
 
-	private int identifiant_adherent;
 
 
 
@@ -24,7 +23,6 @@ public class Adherents {
 
 	private String e_mail;
 
-	private String hash_pass;
 
 	
 	private String street;
@@ -56,13 +54,7 @@ public class Adherents {
 		this.city = city;
 	}
 
-	public int getIdentifiant_adherent() {
-		return identifiant_adherent;
-	}
 
-	public void setIdentifiant_adherent(int identifiant_adherent) {
-		this.identifiant_adherent = identifiant_adherent;
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -121,11 +113,5 @@ public class Adherents {
 		this.e_mail = e_mail;
 	}
 
-	public String getHash_pass() {
-		return hash_pass;
-	}
 
-	public void setHash_pass(String hash_pass) {
-		this.hash_pass = hash_pass;
-	}
 }

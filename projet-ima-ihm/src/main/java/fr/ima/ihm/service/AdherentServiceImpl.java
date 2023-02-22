@@ -93,7 +93,6 @@ public class AdherentServiceImpl implements AdherentService {
 		dto.setPrintListing(bean.isPrintListing());
 		dto.setE_mail(bean.getE_mail());
 		dto.setGender(bean.getGender());
-		dto.setHash_pass(bean.getHash_pass());
 
 		// Créé une nouvelle instance d'adresse sans se soucier
 		// de savoir si une même adresse existe déjà
@@ -118,7 +117,7 @@ public class AdherentServiceImpl implements AdherentService {
 		
 		ret.setFirstName(dto.getFirstName());
 		ret.setLastName(dto.getLastName());
-		ret.setIdentifiant_adherent(dto.getIdentifiant_adherent());
+
 		
 		DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 		ret.setBirthDate(df.format(dto.getBirthDate()));
@@ -127,7 +126,7 @@ public class AdherentServiceImpl implements AdherentService {
 		ret.setPrintListing(dto.isPrintListing());
 		ret.setE_mail(dto.getE_mail());
 		ret.setGender(dto.getGender());
-		ret.setHash_pass(dto.getHash_pass());
+	
 
 	
 		if (dto.getAdress() != null) {

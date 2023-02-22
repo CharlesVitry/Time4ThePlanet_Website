@@ -13,8 +13,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Adherent {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private String email;
 
 	private String civilite;
 	private String prenom;
@@ -23,23 +22,13 @@ public class Adherent {
 	
 	private boolean residentFrancais; 
 	private boolean affichageLister;
-	
-	private String email;
 
-	private String hash_mdp;
 
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "adresse_id")
 	private Adresse adresse;
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getPrenom() {
 		return prenom;
@@ -106,13 +95,6 @@ public class Adherent {
 		this.email = email;
 	}
 
-	public String getHash_mdp() {
-		return hash_mdp;
-	}
-
-	public void setHash_mdp(String hash_mdp) {
-		this.hash_mdp = hash_mdp;
-	}
 	
 	
 }
