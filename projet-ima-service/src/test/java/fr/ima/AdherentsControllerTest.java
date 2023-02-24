@@ -41,9 +41,41 @@ public class AdherentsControllerTest {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     
 	private static Logger logger = Logger.getLogger(AdherentsControllerTest.class.getName());
-    
+
+
     @Test
-    @Order(4)    
+    @Order(1)
+    public void testCreateAdherents() throws Exception {
+        Adherents dummy = new Adherents();
+        dummy.setGender("H");
+        dummy.setLastName("MACRON");
+        dummy.setFirstName("Emmanuel");
+        dummy.setBirthDate(DateUtil.parse("1977-12-21"));
+        dummy.setResidentFrench(true);
+        dummy.setPrintListing(true);
+        dummy.setE_mail("macron@yahoo.fr");
+
+        Address address = new Address();
+        address.setStreet("57 rue du Faubourg-Saint-Honoré");
+        address.setPostCode("49000");
+        address.setCity("75008");
+        dummy.setAdress(address);
+
+
+
+        logger.info("Object to insert : "+OBJECT_MAPPER.writeValueAsString(dummy));
+
+        ResponseEntity<Adherents> response = testRestTemplate.postForEntity("http://localhost:"+port+"/adherent/create", dummy, Adherents.class);
+        assertTrue(response.getBody() != null);
+
+        identifiant_adherent = dummy.getE_mail();
+
+        assertTrue(response.getStatusCode().equals(HttpStatus.CREATED));
+    }
+
+
+    @Test
+    @Order(2)
     public void testGetAdherents() throws Exception {
     	ResponseEntity<List> response = testRestTemplate.getForEntity("http://localhost:"+port+"/adherent", List.class);
     	assertTrue(response.getStatusCode().equals(HttpStatus.OK));
@@ -55,49 +87,22 @@ public class AdherentsControllerTest {
     public void testGetAdherentsNotExistDetail() throws Exception {
 
     	ResponseEntity<Adherents> response = testRestTemplate.getForEntity("http://localhost:"+port+"/adherent/11111", Adherents.class);
+        logger.info("Réponse à du get à id qui n'existe pas"+OBJECT_MAPPER.writeValueAsString(response.getStatusCode()));
+
     	assertTrue(response.getStatusCode().equals(HttpStatus.NOT_FOUND));
     }
     
     @Test
-    @Order(2)
+    @Order(4)
     public void testGetAdherentsDetail() throws Exception {
-
+        logger.info("email de l'adherent recherché :  "+OBJECT_MAPPER.writeValueAsString(identifiant_adherent));
     	ResponseEntity<Adherents> response = testRestTemplate.getForEntity("http://localhost:"+port+"/adherent/"+identifiant_adherent, Adherents.class);
+        logger.info("Réponse à la recherche de l'adherent "+OBJECT_MAPPER.writeValueAsString(response.getStatusCode()));
+
     	assertTrue(response.getStatusCode().equals(HttpStatus.OK));
     }    
     
-    @Test
-    @Order(1)
-    public void testCreateAdherents() throws Exception {
-    	
-    	
-    	
-    	Adherents dummy = new Adherents();
-    	dummy.setGender("H");
-    	dummy.setLastName("MACRON");
-    	dummy.setFirstName("Emmanuel");
-    	dummy.setBirthDate(DateUtil.parse("1977-12-21"));
-    	dummy.setResidentFrench(true);
-    	dummy.setPrintListing(true);
-    	dummy.setE_mail("macron@yahoo.fr");
-    	
-    	Address address = new Address();
-    	address.setStreet("57 rue du Faubourg-Saint-Honoré");
-    	address.setPostCode("49000");
-    	address.setCity("75008");
-    	dummy.setAdress(address);
-    	
-    	    	
-    	
-    	logger.info("Object to insert : "+OBJECT_MAPPER.writeValueAsString(dummy));
-    	
-    	ResponseEntity<Adherents> response = testRestTemplate.postForEntity("http://localhost:"+port+"/adherent/create", dummy, Adherents.class);
-    	assertTrue(response.getBody() != null);
-    	
-    	identifiant_adherent = String.valueOf(response.getBody().getE_mail());
-    	
-    	assertTrue(response.getStatusCode().equals(HttpStatus.CREATED));
-     }    
+
 
 
     @Test
