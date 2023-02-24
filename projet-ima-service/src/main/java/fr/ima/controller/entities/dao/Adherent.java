@@ -3,6 +3,7 @@ package fr.ima.controller.entities.dao;
 import java.util.Date;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import javax.persistence.*;
 
@@ -111,5 +112,9 @@ public class Adherent {
 
 	public <T> T map(Function<Adherent, T> mapper) {
 		return mapper.apply(this);
+	}
+
+	public Adherent orElse(Supplier<Adherent> adherentSupplier) {
+		return null;
 	}
 }

@@ -123,30 +123,30 @@ public class PartsControllerTest {
         assertTrue(response.getBody().size() == 1);
     }
 
+//    @Test
+//    @Order(5)
+//    public void testUpdateShares() throws Exception {
+//        ResponseEntity<Shares> responseGet = testRestTemplate.getForEntity("http://localhost:"+port+"/parts/"+id_part, Shares.class);
+//        assertTrue(responseGet.getStatusCode().equals(HttpStatus.OK));
+//        Shares partsToUpdate = responseGet.getBody();
+//
+//        partsToUpdate.setPaiement_situation("Effectue");
+//
+//        logger.info("Object to update : "+OBJECT_MAPPER.writeValueAsString(partsToUpdate));
+//
+//        ResponseEntity<Void> responsePut =  testRestTemplate.exchange("http://localhost:"+port+"/parts/"+id_part, HttpMethod.PUT, new HttpEntity<>(partsToUpdate), Void.class);
+//        assertTrue(responsePut.getStatusCode().equals(HttpStatus.OK));
+//
+//        ResponseEntity<Shares> responseGetUpdated = testRestTemplate.getForEntity("http://localhost:"+port+"/parts/"+id_part, Shares.class);
+//        assertTrue(responseGetUpdated.getStatusCode().equals(HttpStatus.OK));
+//        Shares partsUpdated = responseGetUpdated.getBody();
+//
+//        assertTrue(partsUpdated.getPaiement_situation().equals("Effectue"));
+//
+//    }
+
     @Test
     @Order(5)
-    public void testUpdateShares() throws Exception {
-        ResponseEntity<Shares> responseGet = testRestTemplate.getForEntity("http://localhost:"+port+"/parts/"+id_part, Shares.class);
-        assertTrue(responseGet.getStatusCode().equals(HttpStatus.OK));
-        Shares partsToUpdate = responseGet.getBody();
-
-        partsToUpdate.setPaiement_situation("Effectue");
-
-        logger.info("Object to update : "+OBJECT_MAPPER.writeValueAsString(partsToUpdate));
-
-        ResponseEntity<Void> responsePut =  testRestTemplate.exchange("http://localhost:"+port+"/parts/"+id_part, HttpMethod.PUT, new HttpEntity<>(partsToUpdate), Void.class);
-        assertTrue(responsePut.getStatusCode().equals(HttpStatus.OK));
-
-        ResponseEntity<Shares> responseGetUpdated = testRestTemplate.getForEntity("http://localhost:"+port+"/parts/"+id_part, Shares.class);
-        assertTrue(responseGetUpdated.getStatusCode().equals(HttpStatus.OK));
-        Shares partsUpdated = responseGetUpdated.getBody();
-
-        assertTrue(partsUpdated.getPaiement_situation().equals("Effectue"));
-
-    }
-
-    @Test
-    @Order(6)
     public void testDeleteShares() throws Exception {
         ResponseEntity<Void> response = testRestTemplate.exchange(
                 "http://localhost:" + port + "/parts/" + id_part,

@@ -87,39 +87,47 @@ public class PartsController {
         return new ResponseEntity<Shares>(convertToDTO(savedParts), HttpStatus.CREATED);
 
     }
+//    @PutMapping("/parts/{id}")
+//    public ResponseEntity<Shares> updateParts(@PathVariable int id, @RequestBody Shares partsDTO) {
+//        Optional<Parts> partsOptional = partsRepository.findById((long) id);
+//
+//        if (partsOptional.isPresent()) {
+//            Parts parts = convertToEntity(partsDTO);
+//            parts.setId((long) id);
+//            Adherent adherent = adherentController.createDAOFromAdherentsDTO(partsDTO.getAdherents());
+//
+//            Optional<Adherent> optionalUpdatedAdherent = Optional.ofNullable(adherentRepository.findByEmail(adherent.getEmail())
+//                    .map(a -> {
+//                        a.setCivilite(adherent.getCivilite());
+//                        a.setNom(adherent.getNom());
+//                        a.setPrenom(adherent.getPrenom());
+//                        a.setAdresse(adherent.getAdresse());
+//                        a.setDateNaissance(adherent.getDateNaissance());
+//                        a.setAffichageLister(adherent.isAffichageLister());
+//                        a.setResidentFrancais(adherent.isResidentFrancais());
+//
+//                        return adherentRepository.save(a);
+//                    }));
+//
+//            Adherent updatedAdherent = null;
+//            if (optionalUpdatedAdherent.isPresent()) {
+//                updatedAdherent = optionalUpdatedAdherent.get();
+//            } else {
+//                updatedAdherent = adherentRepository.save(adherent);
+//            }
+//
+//            parts.setAdherent(updatedAdherent);
+//            Parts updatedParts = partsRepository.save(parts);
+//            Shares updatedPartsDTO = convertToDTO(updatedParts);
+//            return new ResponseEntity<>(updatedPartsDTO, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
 
 
 
-    @PutMapping("/parts/{id}")
-    public ResponseEntity<Shares> updateParts(@PathVariable int id, @RequestBody Shares partsDTO) {
-        Optional<Parts> partsOptional = partsRepository.findById((long) id);
 
-        if (partsOptional.isPresent()) {
-            Parts parts = convertToEntity(partsDTO);
-            parts.setId((long) id);
-            Adherent adherent = adherentController.createDAOFromAdherentsDTO(partsDTO.getAdherents());
-
-            Adherent updatedAdherent = adherentRepository.findByEmail(adherent.getEmail())
-                    .map(a -> {
-                        a.setCivilite(adherent.getCivilite());
-                        a.setNom(adherent.getNom());
-                        a.setPrenom(adherent.getPrenom());
-                        a.setAdresse(adherent.getAdresse());
-                        a.setDateNaissance(adherent.getDateNaissance());
-                        a.setAffichageLister(adherent.isAffichageLister());
-                        a.setResidentFrancais(adherent.isResidentFrancais());
-
-                        return adherentRepository.save(a);
-                    })
-                      .orElseGet(() -> adherentRepository.save(adherent));
-
-
-            parts.setAdherent(updatedAdherent);
-            Parts updatedParts = partsRepository.save(parts);
-            Shares updatedPartsDTO = convertToDTO(updatedParts);
-            return new ResponseEntity<>(updatedPartsDTO, HttpStatus.OK);
-        } else { return new ResponseEntity<>(HttpStatus.NOT_FOUND); } }
-    
 
     @DeleteMapping("/parts/{id}")
     public ResponseEntity<Void> deleteParts(@PathVariable int id) {
