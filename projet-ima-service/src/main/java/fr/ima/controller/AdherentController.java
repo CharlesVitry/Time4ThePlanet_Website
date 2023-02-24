@@ -44,10 +44,10 @@ public class AdherentController {
 		return ResponseEntity.ok(list);
 	}
 	
-	@GetMapping("/adherent/{id}")
-	public HttpEntity<Adherents> getAdherentsDetail(@PathVariable String id) {
+	@GetMapping("/adherent/{email}")
+	public HttpEntity<Adherents> getAdherentsDetail(@PathVariable String email) {
 		
-		Optional<Adherent> e = adherentRepository.findById(id);
+		Optional<Adherent> e = Optional.ofNullable(adherentRepository.findByEmail(email));
 		// La doc sur les Optional : https://www.javatpoint.com/java-8-optional
 		if (!e.isPresent()) {
 			return new ResponseEntity<Adherents>(HttpStatus.NOT_FOUND);
