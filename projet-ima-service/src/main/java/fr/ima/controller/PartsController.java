@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
+
 import fr.ima.controller.entities.dao.Parts;
 import fr.ima.controller.entities.dao.services.PartsRepositoryInterface;
 import fr.ima.controller.entities.dto.Adherents;
@@ -108,7 +110,8 @@ public class PartsController {
                         a.setResidentFrancais(adherent.isResidentFrancais());
 
                         return adherentRepository.save(a);
-                    });
+                    })
+                      .orElseGet(() -> adherentRepository.save(adherent));
 
 
             parts.setAdherent(updatedAdherent);
@@ -116,6 +119,7 @@ public class PartsController {
             Shares updatedPartsDTO = convertToDTO(updatedParts);
             return new ResponseEntity<>(updatedPartsDTO, HttpStatus.OK);
         } else { return new ResponseEntity<>(HttpStatus.NOT_FOUND); } }
+    
 
     @DeleteMapping("/parts/{id}")
     public ResponseEntity<Void> deleteParts(@PathVariable int id) {
