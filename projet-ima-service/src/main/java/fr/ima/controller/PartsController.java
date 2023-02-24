@@ -91,9 +91,15 @@ public class PartsController {
     @PutMapping("/parts/{id}")
     public ResponseEntity<Shares> updateParts(@PathVariable int id, @RequestBody Shares partsDTO) {
         Optional<Parts> partsOptional = partsRepository.findById((long) id);
+
         if (partsOptional.isPresent()) {
             Parts parts = convertToEntity(partsDTO);
             parts.setId((long) id);
+            Adherent adherent = adherentController.createDAOFromAdherentsDTO(partsDTO.getAdherents());
+
+
+            Adherent updatedAdherent = adherentRepository.save(adherent);
+            parts.setAdherent(updatedAdherent);
             Parts updatedParts = partsRepository.save(parts);
             Shares updatedPartsDTO = convertToDTO(updatedParts);
             return new ResponseEntity<>(updatedPartsDTO, HttpStatus.OK);

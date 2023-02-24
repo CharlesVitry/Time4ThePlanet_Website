@@ -79,7 +79,7 @@ public class AdherentsControllerTest {
     public void testGetAdherents() throws Exception {
     	ResponseEntity<List> response = testRestTemplate.getForEntity("http://localhost:"+port+"/adherent", List.class);
     	assertTrue(response.getStatusCode().equals(HttpStatus.OK));
-    	assertTrue(response.getBody().size() == 1);
+    	assertTrue(response.getBody().size() == 2);
     }
 
     @Test
