@@ -97,16 +97,25 @@ public class PartsController {
             parts.setId((long) id);
             Adherent adherent = adherentController.createDAOFromAdherentsDTO(partsDTO.getAdherents());
 
+            Adherent updatedAdherent = adherentRepository.findByEmail(adherent.getEmail())
+                    .map(a -> {
+                        a.setCivilite(adherent.getCivilite());
+                        a.setNom(adherent.getNom());
+                        a.setPrenom(adherent.getPrenom());
+                        a.setAdresse(adherent.getAdresse());
+                        a.setDateNaissance(adherent.getDateNaissance());
+                        a.setAffichageLister(adherent.isAffichageLister());
+                        a.setResidentFrancais(adherent.isResidentFrancais());
 
-            Adherent updatedAdherent = adherentRepository.save(adherent);
+                        return adherentRepository.save(a);
+                    });
+
+
             parts.setAdherent(updatedAdherent);
             Parts updatedParts = partsRepository.save(parts);
             Shares updatedPartsDTO = convertToDTO(updatedParts);
             return new ResponseEntity<>(updatedPartsDTO, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+        } else { return new ResponseEntity<>(HttpStatus.NOT_FOUND); } }
 
     @DeleteMapping("/parts/{id}")
     public ResponseEntity<Void> deleteParts(@PathVariable int id) {

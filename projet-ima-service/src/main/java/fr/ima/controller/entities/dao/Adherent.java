@@ -2,6 +2,7 @@ package fr.ima.controller.entities.dao;
 
 import java.util.Date;
 import java.util.Objects;
+import java.util.function.Function;
 
 import javax.persistence.*;
 
@@ -24,6 +25,9 @@ public class Adherent {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "adresse_id")
 	private Adresse adresse;
+
+	public Adherent() {
+	}
 
 
 	@Override
@@ -104,6 +108,8 @@ public class Adherent {
 		this.email = email;
 	}
 
-	
-	
+
+	public <T> T map(Function<Adherent, T> mapper) {
+		return mapper.apply(this);
+	}
 }
