@@ -26,7 +26,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/parts")
 public class PartsController {
 
     @Autowired
@@ -38,8 +37,17 @@ public class PartsController {
     @Autowired
     private AdherentController adherentController;
 
-    // toutes les parts, utile pour le compteur final
-    @GetMapping("/{id}")
+    @GetMapping("/parts")
+    public HttpEntity<List<Shares>> getParts() {
+        Iterable<Parts> e = partsRepository.findAll();
+        List<Shares> list = new ArrayList<Shares>();
+        for (Iterator<Parts> iterator = e.iterator(); iterator.hasNext();) {
+            list.add(convertToDTO(iterator.next()));
+        }
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/parts/{id}")
     public ResponseEntity<Shares> getPartsById(@PathVariable int id) {
         Optional<Parts> partsOptional = partsRepository.findById((long) id);
         if (partsOptional.isPresent()) {
@@ -50,7 +58,7 @@ public class PartsController {
         }
     }
 
-    @GetMapping("/adherent/{id}")
+    @GetMapping("/parts/adherent/{id}")
     public ResponseEntity<List<Shares>> getPartsByAdherentId(@PathVariable int id) {
         Optional<Adherent> adherentOptional = adherentRepository.findById(String.valueOf((long) id));
         if (adherentOptional.isPresent()) {
@@ -65,17 +73,22 @@ public class PartsController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/parts/create")
     public ResponseEntity<Shares> createParts(@RequestBody Shares partsDTO) {
+
+        if (!StringUtils.hasText(partsDTO.getPaiement_method()) || !StringUtils.hasText((CharSequence) partsDTO.getAdherents())) {
+            return new ResponseEntity<Shares>(HttpStatus.BAD_REQUEST);
+        }
+
         Parts parts = convertToEntity(partsDTO);
         Parts savedParts = partsRepository.save(parts);
-        Shares savedPartsDTO = convertToDTO(savedParts);
-        return new ResponseEntity<>(savedPartsDTO, HttpStatus.CREATED);
+        return new ResponseEntity<Shares>(convertToDTO(savedParts), HttpStatus.CREATED);
+
     }
 
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/parts/{id}")
     public ResponseEntity<Shares> updateParts(@PathVariable int id, @RequestBody Shares partsDTO) {
         Optional<Parts> partsOptional = partsRepository.findById((long) id);
         if (partsOptional.isPresent()) {
@@ -89,7 +102,7 @@ public class PartsController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/parts/{id}")
     public ResponseEntity<Void> deleteParts(@PathVariable int id) {
         Optional<Parts> partsOptional = partsRepository.findById((long) id);
         if (partsOptional.isPresent()) {

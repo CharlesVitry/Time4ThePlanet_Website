@@ -43,29 +43,6 @@ public class PartsControllerTest {
 
     private static Logger logger = Logger.getLogger(AdherentsControllerTest.class.getName());
 
-    @Test
-    @Order(4)
-    public void testGetparts() throws Exception {
-        ResponseEntity<List> response = testRestTemplate.getForEntity("http://localhost:"+port+"/parts", List.class);
-        assertTrue(response.getStatusCode().equals(HttpStatus.OK));
-        assertTrue(response.getBody().size() == 1);
-    }
-
-    @Test
-    @Order(3)
-    public void testGetSharesNotExistDetail() throws Exception {
-
-        ResponseEntity<Shares> response = testRestTemplate.getForEntity("http://localhost:"+port+"/parts/11111", Shares.class);
-        assertTrue(response.getStatusCode().equals(HttpStatus.NOT_FOUND));
-    }
-
-    @Test
-    @Order(2)
-    public void testGetSharesDetail() throws Exception {
-
-        ResponseEntity<Shares> response = testRestTemplate.getForEntity("http://localhost:"+port+"/parts/"+id_part, Shares.class);
-        assertTrue(response.getStatusCode().equals(HttpStatus.OK));
-    }
 
     @Test
     @Order(1)
@@ -113,6 +90,30 @@ public class PartsControllerTest {
         assertTrue(response.getStatusCode().equals(HttpStatus.CREATED));
     }
 
+    @Test
+    @Order(2)
+    public void testGetSharesDetail() throws Exception {
+
+        ResponseEntity<Shares> response = testRestTemplate.getForEntity("http://localhost:"+port+"/parts/"+id_part, Shares.class);
+        assertTrue(response.getStatusCode().equals(HttpStatus.OK));
+    }
+
+    @Test
+    @Order(3)
+    public void testGetSharesNotExistDetail() throws Exception {
+
+        ResponseEntity<Shares> response = testRestTemplate.getForEntity("http://localhost:"+port+"/parts/11111", Shares.class);
+        assertTrue(response.getStatusCode().equals(HttpStatus.NOT_FOUND));
+    }
+
+
+    @Test
+    @Order(4)
+    public void testGetparts() throws Exception {
+        ResponseEntity<List> response = testRestTemplate.getForEntity("http://localhost:"+port+"/parts", List.class);
+        assertTrue(response.getStatusCode().equals(HttpStatus.OK));
+        assertTrue(response.getBody().size() == 1);
+    }
 
     @Test
     @Order(5)
