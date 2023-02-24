@@ -1,4 +1,4 @@
-/*package fr.ima.controller;
+package fr.ima.controller;
 
 import fr.ima.controller.entities.dao.Adherent;
 import fr.ima.controller.entities.dao.services.AdherentRepositoryInterface;
@@ -52,7 +52,7 @@ public class PartsController {
 
     @GetMapping("/adherent/{id}")
     public ResponseEntity<List<Shares>> getPartsByAdherentId(@PathVariable int id) {
-        Optional<Adherent> adherentOptional = adherentRepository.findById((long) id);
+        Optional<Adherent> adherentOptional = adherentRepository.findById(String.valueOf((long) id));
         if (adherentOptional.isPresent()) {
             List<Parts> partsList = partsRepository.findByAdherent(adherentOptional.get());
             List<Shares> partsDTOList = new ArrayList<>();
@@ -80,7 +80,7 @@ public class PartsController {
         Optional<Parts> partsOptional = partsRepository.findById((long) id);
         if (partsOptional.isPresent()) {
             Parts parts = convertToEntity(partsDTO);
-            parts.setId(id);
+            parts.setId((long) id);
             Parts updatedParts = partsRepository.save(parts);
             Shares updatedPartsDTO = convertToDTO(updatedParts);
             return new ResponseEntity<>(updatedPartsDTO, HttpStatus.OK);
@@ -99,14 +99,10 @@ public class PartsController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    *//**
-     * Convertit un objet Parts DAO en Shares DTO
-     * @param parts
-     * @return
-     *//*
+
     private Shares convertToDTO(Parts parts) {
         Shares shares = new Shares();
-        shares.setId(parts.getId());
+        shares.setId(Math.toIntExact(parts.getId()));
         shares.setDesc(parts.getDescription());
         shares.setAdditional_fee(parts.getCouts_supp());
         shares.setNumber(parts.getNombre());
@@ -117,11 +113,7 @@ public class PartsController {
 
         return shares;
     }
-    *//**
-     * Convertit un objet Adherents DTO en Adherent DAO
-     * @param share
-     * @return
-     *//*
+
     private Parts convertToEntity(Shares share) {
         Parts part = new Parts();
         part.setCouts_supp(share.getAdditional_fee());
@@ -136,4 +128,4 @@ public class PartsController {
 
 
 
-}*/
+}

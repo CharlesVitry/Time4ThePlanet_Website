@@ -31,7 +31,7 @@ public class AdherentController {
 	private AdherentRepositoryInterface adherentRepository;
 
 	
-	@GetMapping("/adherents")
+	@GetMapping("/adherent")
 	public HttpEntity<List<Adherents>> getAdherent() {
 		
 		Iterable<Adherent> e = adherentRepository.findAll();
@@ -45,17 +45,20 @@ public class AdherentController {
 	}
 	
 	@GetMapping("/adherent/{id}")
-	public HttpEntity<Adherents> getAdherentsDetail(@PathVariable String id) {
+	public HttpEntity<Adherents> getAdherentsDetail(@PathVariable String email) {
 		
-		Optional<Adherent> e = adherentRepository.findById(new Long(id));
-
+		Optional<Adherent> e = adherentRepository.findById(email);
 		// La doc sur les Optional : https://www.javatpoint.com/java-8-optional
 		if (!e.isPresent()) {
 			return new ResponseEntity<Adherents>(HttpStatus.NOT_FOUND);
 		}
-	
+
 		return new ResponseEntity<Adherents>(createDTOFromAdherentDAO(e.get()), HttpStatus.OK);
-	}	
+
+
+	}
+
+
 	
 	@PostMapping("/adherent/create")
 	public HttpEntity<Adherents> createAdherents(@RequestBody Adherents adherents) {  // Créer un objet Adherents ici pour passer les valeurs

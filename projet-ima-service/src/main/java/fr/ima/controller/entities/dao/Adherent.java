@@ -1,6 +1,7 @@
 package fr.ima.controller.entities.dao;
 
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Adherent {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String email;
 
 	private String civilite;
@@ -29,6 +31,19 @@ public class Adherent {
 	@JoinColumn(name = "adresse_id")
 	private Adresse adresse;
 
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Adherent)) return false;
+		Adherent adherent = (Adherent) o;
+		return Objects.equals(email, adherent.email);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(email);
+	}
 
 	public String getPrenom() {
 		return prenom;
