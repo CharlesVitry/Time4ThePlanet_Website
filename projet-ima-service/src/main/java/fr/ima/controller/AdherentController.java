@@ -73,17 +73,49 @@ public class AdherentController {
 		adherentRepository.save(adherentDAO);
 		
 		return new ResponseEntity<Adherents>(createDTOFromAdherentDAO(adherentDAO), HttpStatus.CREATED);
-	}		
-	
-	@DeleteMapping("/adherent/delete/{id}")
-	public HttpEntity deleteAdherents(@PathVariable String id) {
-		return null;
 	}
-	
-	@PutMapping("/adherent/update")
-	public HttpEntity<Adherents> updateAdherents(@RequestBody Adherents adherents) {
-		return null;
-	}	
+
+	@DeleteMapping("/adherent/{email}")
+	public ResponseEntity<Void> deleteAdherent(@PathVariable String email) {
+		Optional<Adherent> adherent = Optional.ofNullable(adherentRepository.findByEmail(email));
+		if (!adherent.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+
+		adherentRepository.delete(adherent.get());
+		return ResponseEntity.noContent().build();
+	}
+
+	@PutMapping("/adherent/{email}")
+	public ResponseEntity<Adherents> updateAdherent(@PathVariable String email, @RequestBody Adherents adherents) {
+		Optional<Adherent> existingAdherent = Optional.ofNullable(adherentRepository.findByEmail(email));
+		if (!existingAdherent.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+
+		Adherent updatedAdherent = updateAdherentFromDTO(existingAdherent.get(), adherents);
+		adherentRepository.save(updatedAdherent);
+
+		return ResponseEntity.ok(createDTOFromAdherentDAO(updatedAdherent));
+	}
+
+	private Adherent updateAdherentFromDTO(Adherent existingAdherent, Adherents updatedAdherent) {
+		existingAdherent.setCivilite(updatedAdherent.getGender());
+		existingAdherent.setPrenom(updatedAdherent.getFirstName());
+		existingAdherent.setNom(updatedAdherent.getLastName());
+		existingAdherent.setDateNaissance(updatedAdherent.getBirthDate());
+		existingAdherent.setResidentFrancais(updatedAdherent.isResidentFrench());
+		existingAdherent.setAffichageLister(updatedAdherent.isPrintListing());
+
+		if (existingAdherent.getAdresse() == null) {
+			existingAdherent.setAdresse(new Adresse());
+		}
+
+		existingAdherent.getAdresse().setRue(updatedAdherent.getAdress().getStreet());
+		existingAdherent.getAdresse().setCodePostal(updatedAdherent.getAdress().getPostCode());
+		existingAdherent.getAdresse().setVille(updatedAdherent.getAdress().getCity());
+		return existingAdherent;
+	}
 
 	/**
 	 * Convertit un objet Adherents DTO en Adherent DAO

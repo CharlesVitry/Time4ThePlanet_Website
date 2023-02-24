@@ -3,18 +3,12 @@ package fr.ima.controller.entities.dao;
 import java.util.Date;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Adherent {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "email")
 	private String email;
 
 	private String civilite;
