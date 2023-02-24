@@ -76,7 +76,7 @@ public class PartsController {
     @PostMapping("/parts/create")
     public ResponseEntity<Shares> createParts(@RequestBody Shares partsDTO) {
 
-        if (!StringUtils.hasText(partsDTO.getPaiement_method()) || !StringUtils.hasText((CharSequence) partsDTO.getAdherents())) {
+        if (!StringUtils.hasText(partsDTO.getPaiement_method()) || partsDTO.getAdherents() == null) {
             return new ResponseEntity<Shares>(HttpStatus.BAD_REQUEST);
         }
 
