@@ -14,4 +14,7 @@ public interface PartsRepositoryInterface extends CrudRepository<Parts, Long> {
     public Parts findByCode(int code);
 
     List<Parts> findByAdherent(Adherent adherent);
+
+    @Query(value = "SELECT SUM(p.nombre) FROM parts p")
+    public int sumOfNombre();
 }

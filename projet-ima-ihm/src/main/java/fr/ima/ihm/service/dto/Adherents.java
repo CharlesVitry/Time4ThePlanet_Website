@@ -4,24 +4,22 @@ import java.util.Date;
 
 public class Adherents {
 
-
-
-
 	private String gender;
 	private String firstName;
 	private String lastName;
-	private String birthDate; 
-	
-	private boolean residentFrench; 
+	private Date birthDate;
+
+	private boolean residentFrench;
 	private boolean printListing;
 
 	private String e_mail;
 
 
 
-	
 	private Address adress;
 
+	public Adherents() {
+	}
 
 
 	public String getFirstName() {
@@ -40,12 +38,12 @@ public class Adherents {
 		this.lastName = lastName;
 	}
 
-	public String getBirthDate() {
+	public Date getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(String string) {
-		this.birthDate = string;
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public boolean isResidentFrench() {
@@ -88,6 +86,7 @@ public class Adherents {
 	public void setE_mail(String e_mail) {
 		this.e_mail = e_mail;
 	}
+
 
 
 

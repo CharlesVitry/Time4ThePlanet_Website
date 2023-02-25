@@ -1,58 +1,19 @@
 package fr.ima.ihm.beans;
 
 import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import fr.ima.ihm.service.dto.Address;
+import java.util.Date;
 
 public class Adherents {
-
-
-
 
 	private String gender;
 	private String firstName;
 	private String lastName;
-	
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
-	private String birthDate; 
-	
-	private boolean residentFrench; 
+	private Date birthDate;
+
+	private boolean residentFrench;
 	private boolean printListing;
 
 	private String e_mail;
-
-
-	
-	private String street;
-	private String postCode;
-	private String city;
-	
-
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-	public String getPostCode() {
-		return postCode;
-	}
-
-	public void setPostCode(String postCode) {
-		this.postCode = postCode;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
 
 
 
@@ -72,11 +33,11 @@ public class Adherents {
 		this.lastName = lastName;
 	}
 
-	public String getBirthDate() {
+	public Date getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(String birthDate) {
+	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
 
@@ -112,6 +73,8 @@ public class Adherents {
 	public void setE_mail(String e_mail) {
 		this.e_mail = e_mail;
 	}
+
+
 
 
 }

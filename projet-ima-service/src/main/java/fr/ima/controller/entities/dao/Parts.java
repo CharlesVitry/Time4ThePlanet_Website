@@ -50,7 +50,7 @@ public class Parts {
     }
 
     public void setNombre(int nombre) {
-        nombre = nombre;
+        this.nombre = nombre;
     }
 
     public String getStatus_paiement() {

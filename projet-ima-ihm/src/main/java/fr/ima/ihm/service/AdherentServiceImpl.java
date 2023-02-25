@@ -31,7 +31,7 @@ public class AdherentServiceImpl implements AdherentService {
 	public List<Adherents> lister() {
 
 		// Construction de l'URL pour l'appel su WS
-		String url = "http://localhost:8090/adherents";
+		String url = "http://localhost:4500/adherents";
 
 		// Appel du WS Rest
 		ObjectMapper mapper = new ObjectMapper();
@@ -60,7 +60,7 @@ public class AdherentServiceImpl implements AdherentService {
 	@Override
 	public Adherents creer(Adherents adherents) {
 		// Construction de l'URL pour l'appel su WS
-		String url = "http://localhost:8090/adherent/create";
+		String url = "http://localhost:4500/adherent/create";
 
 		Adherents ret = null;
 		try {
@@ -120,20 +120,11 @@ public class AdherentServiceImpl implements AdherentService {
 
 		
 		DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-		ret.setBirthDate(df.format(dto.getBirthDate()));
-		
+		ret.setBirthDate(dto.getBirthDate());
 		ret.setResidentFrench(dto.isResidentFrench());
 		ret.setPrintListing(dto.isPrintListing());
 		ret.setE_mail(dto.getE_mail());
 		ret.setGender(dto.getGender());
-	
-
-	
-		if (dto.getAdress() != null) {
-			ret.setStreet(dto.getAdress().getStreet());
-			ret.setPostCode(dto.getAdress().getPostCode());
-			ret.setCity(dto.getAdress().getCity());
-		}
 		
 		return ret;
 	}
