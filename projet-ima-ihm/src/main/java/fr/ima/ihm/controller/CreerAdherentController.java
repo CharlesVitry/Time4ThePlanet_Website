@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import fr.ima.ihm.beans.Adherents;
 import fr.ima.ihm.service.AdherentService;
 
-import java.util.List;
-
 @Controller
 public class CreerAdherentController {
 
@@ -23,7 +21,7 @@ public class CreerAdherentController {
 	@RequestMapping(
 			  value = "/save", 
 			  method = RequestMethod.POST)
-    public String creerEtudiant(@ModelAttribute("student") Adherents adherents) {
+    public String creerAdherent(@ModelAttribute("adherent") Adherents adherents) {
 		dao.creer(adherents);
 		
         return "redirect:/list";

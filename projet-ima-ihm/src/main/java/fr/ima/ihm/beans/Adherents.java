@@ -1,5 +1,7 @@
 package fr.ima.ihm.beans;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.Date;
 
@@ -8,6 +10,7 @@ public class Adherents {
 	private String gender;
 	private String firstName;
 	private String lastName;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthDate;
 
 	private boolean residentFrench;

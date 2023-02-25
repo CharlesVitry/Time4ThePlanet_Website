@@ -162,12 +162,14 @@ public class AdherentController {
 		adherents.setE_mail(adherent.getEmail());
 		adherents.setGender(adherent.getCivilite());
 
-		
-		Address address = new Address();
-		address.setStreet(adherent.getAdresse().getRue());
-		address.setPostCode(adherent.getAdresse().getCodePostal());
-		address.setCity(adherent.getAdresse().getVille());
-		adherents.setAdress(address);
+		if (adherent.getAdresse() != null) {
+			Address address = new Address();
+			address.setStreet(adherent.getAdresse().getRue());
+			address.setPostCode(adherent.getAdresse().getCodePostal());
+			address.setCity(adherent.getAdresse().getVille());
+			adherents.setAdress(address);
+		}
+
 		
 		return adherents;
 	}	
