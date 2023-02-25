@@ -17,7 +17,7 @@ public class PageListAdherentController {
     @GetMapping("/list") // Annotation qui permet de déclencher la méthode "/list" suite au clic sur un lien
     public String afficherListeDesAdherents(Model model) { // objet model qui sera injecté dans la page de résultat
         model.addAttribute("adherents", dao.lister()); // Insertion de la liste (résultat de la requete) dans l'objet model
-        return "listeDesAdherents"; // page de résultat
+        return "listeAdherents"; // page de résultat
     }
 
 }

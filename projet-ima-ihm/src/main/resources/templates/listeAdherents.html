@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Liste des Adhérents</title>
+  <!-- Link Bootstrap CSS -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</head> <body> <div class="container">
+  <h1>Liste des Adhérents</h1> <table class="table">
+  <thead> <tr>
+    <th>gender</th>
+    <th>firstName</th>
+    <th>lastName</th>
+    <th>birthDate</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Loop through adherents and display each row -->
+<!--  <c:forEach items="${adherents}" var="adherent">-->
+<!--    <tr> <td>${adherent.gender}</td>-->
+<!--      <td>${adherent.firstName}</td>-->
+<!--      <td>${adherent.lastName}</td>-->
+<!--      <td>${adherent.birthDate}</td> </tr>-->
+<!--  </c:forEach>-->
+
+  <tr th:each="adherent: ${adherents}">
+    <td th:text="${adherent.gender}">Oranges</td>
+    <td th:text="${adherent.firstName}">Bananes</td>
+    <td th:text="${adherent.lastName}">Pommes</td>
+    <td th:text="${adherent.birthDate}">Pommes</td>
+  </tr>
+  <tr>
+  </tbody>
+</table>
+</div> <!-- Link Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+
+</script>
+</body>
+</html>

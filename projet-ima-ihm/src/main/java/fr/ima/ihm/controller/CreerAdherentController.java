@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import fr.ima.ihm.beans.Adherents;
 import fr.ima.ihm.service.AdherentService;
 
+import java.util.List;
+
 @Controller
 public class CreerAdherentController {
 

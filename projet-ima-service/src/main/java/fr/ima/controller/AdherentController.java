@@ -31,7 +31,7 @@ public class AdherentController {
 	private AdherentRepositoryInterface adherentRepository;
 
 	
-	@GetMapping("/adherent")
+	@GetMapping("/adherent/list")
 	public HttpEntity<List<Adherents>> getAdherent() {
 		
 		Iterable<Adherent> e = adherentRepository.findAll();

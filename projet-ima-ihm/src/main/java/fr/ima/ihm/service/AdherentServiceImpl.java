@@ -31,7 +31,7 @@ public class AdherentServiceImpl implements AdherentService {
 	public List<Adherents> lister() {
 
 		// Construction de l'URL pour l'appel su WS
-		String url = "http://localhost:4500/adherents";
+		String url = "http://localhost:4500/adherent/list";
 
 		// Appel du WS Rest
 		ObjectMapper mapper = new ObjectMapper();
