@@ -1,65 +1,252 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Create Adherent</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<body>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+        <head>
+                <meta charset="utf-8" />
+                <title>Time 4 The Planet</title>
+              
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+                
+                <style>
+                                 footer {
+      background-color:  #505151
+
+;
+      color: white;
+      padding: 20px;
+    }
+    
+                      
+        
+    
+     @media screen and (max-width: 750px) {
+      .sidenav {
+        height: auto;
+        padding: 20px;
+      }
+  
+    .row.content {height: 500px}
+    
+  
+    .sidenav {
+      padding-top: 15px;
+      height: 100%;
+    }
+    
+  
+    footer {
+      color: white;
+      padding: 15px;
+    }
+    
+   
+      .row.content {height:auto;} 
+          .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    }
+        
+        
+  </style>
+        </head>
+        
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+            <div class="navbar-header">
+            <a class="navbar-brand" href="accueil.html">Time 4 the 🌍</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="accueil.html"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
+                <li><a href="listeAdherents.html">I joined 💪</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="listeAdherents.html"><span class="glyphicon glyphicon-user"></span> Rejoignez-Nous !</a></li>
+            </ul>
+             </div>
+        </nav>
+        
+        <body>
+
+                
+                <div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+     <img src="logo.png" class="align-self-start mr-3" style="width:160px" alt="alt">
+    </div>
+    <div class="col-sm-8 text-left"> 
+       <span style="left"> 
+                    <div class="row-fluid">
+                      <h1>Vous pouvez faire la différence.</h1>
+                        <div class="col-lg-6"> <!--LE CORPS DE LA PAGE DEBUT-->
+                                <article>
+                                        
+                  <font size="3">
+                                        <p class="text-primary">Devenez associé·e
+
+                                          <mark>1 action coûte 1 euro </mark>et vous pouvez en acheter autant que vous le souhaitez.</p>
+										
+										</p><p> <abbr> Votre argent finance des innovations à impact massif.</abbr>Au minimum 90 % de votre argent finance des innovations ayant un impact mondial et massif contre les émissions de gaz à effet de serre.
+
+                      Au maximum 10 % sert au frais de fonctionnement (frais juridiques, salaires, développements web...).</p>
+
+                    </p>
+                    Ça rapporte... Uniquement à la planète !
+                    
+                    Les bénéfices générés sont réinvestis intégralement dans la recherche et la diffusion de nouvelles innovations.
+                    
+                    Chaque année, vous recevrez un suivi précis de la quantité de gaz à effet de serre non émis ou stockés grâce à votre investissement. Cette information est appelée Dividende Climat.
+                    
+										
+                  </p>
+
+										<p><small> Ce site a été fait par deux étudiants dans le cadre de leur projet informatique.</small> </p>
+
+										
+										
+										
+										
+										
+										
+										
+										
+										</font>
+										
+										
+										
+										
+										</article></div></div>
+                                </article>
+                        
+                        <div class="col-lg-6"><img src="phrase.png" class="img-circle" alt="Votre entreprise peut agir !" width="120%" height="100%"></div>
+                   
+                </span> <!--LE CORPS DE LA PAGE FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN-->
+    </div>
+    <br> </br>
+    <div class="col-sm-2 sidenav">
+      <br> </br>
+</div>  <br> </br>
 <div class="container">
-    <h1>Create Adherent</h1>
-    <form th:action="@{/adherents}" method="post" th:object="${adherent}">
-        <div class="form-group">
-            <label for="civilite">Civilite</label>
-            <input type="text" class="form-control" id="civilite" name="civilite" required th:field="*{civilite}">
-        </div>
-        <div class="form-group">
-            <label for="nom">Nom</label>
-            <input type="text" class="form-control" id="nom" name="nom" required th:field="*{nom}">
-        </div>
-        <div class="form-group">
-            <label for="prenom">Prenom</label>
-            <input type="text" class="form-control" id="prenom" name="prenom" required th:field="*{prenom}">
-        </div>
-        <div class="form-group">
-            <label for="adresse">Adresse</label>
-            <input type="text" class="form-control" id="adresse" name="adresse" required th:field="*{adresse}">
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" required th:field="*{email}">
-        </div>
-        <div class="form-group">
-            <label for="dateNaissance">Date de naissance</label>
-            <input type="date" class="form-control" id="dateNaissance" name="dateNaissance"
-                   required th:field="*{dateNaissance}">
-        </div>
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="affichageLister" name="affichageLister"
-                   th:checked="*{affichageLister}">
-            <label class="form-check-label" for="affichageLister">Affichage lister</label>
-        </div>
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="residentFrancais" name="residentFrancais"
-                   th:checked="*{residentFrancais}">
-            <label class="form-check-label" for="residentFrancais">Resident français</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+  <h2>Inscrivez-vous</h2>
+  <form method="post" th:action="@{/save}" th:object="${adherent}">
+      <!-- Gender -->
+      <div class="form-group">
+          <label for="gender">Genre:</label>
+          <select class="form-control" id="gender" name="gender">
+              <option value="male">Monsieur</option>
+              <option value="female">Madame</option>
+          </select></div> <!-- First Name -->
+      <div class="form-group">
+          <label for="firstName">Prénom</label> <input type="text" class="form-control" id="firstName"
+                                                            name="firstName" required>
+      </div> <!-- Last Name -->
+      <div class="form-group"><label for="lastName">Nom</label>
+          <input type="text" class="form-control" id="lastName" name="lastName" required></div> <!-- Birth Date -->
+      <div class="form-group"><label for="birthDate">Date de naissance</label> <input type="date" class="form-control"
+                                                                                id="birthDate" name="birthDate"
+                                                                                required>
+      </div> <!-- Resident French -->
+      <div class="checkbox"><label><input type="checkbox" name="residentFrench" value="true">Resident en France</label>
+      </div> <!-- Print Listing -->
+      <div class="checkbox"><label><input type="checkbox" name="printListing" value="true">Souhaite apparaître sur la liste</label>
+      </div> <!-- E-mail -->
+      <div class="form-group">
+          <label for="e_mail">E-mail:</label> <input type="email" class="form-control" id="e_mail" name="e_mail"
+                                                     required>
+      </div> <!-- Submit button -->
+      <div class="form-group">
+          <input type="submit" value="Valider" class="btn btn-primary">
+      </div>
+      <div th:if="${errorMessage}" style="color: red"><p th:text="${errorMessage}"></p></div>
+  </form>
 </div>
-<!-- Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNS"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
 
 
-</body>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+ <br> </br> </div>
+
+
+
+<footer class="container-fluid text-center">
+ <div class="container">
+
+<div class="media">
+  <img src="logo2.png" class="align-self-start mr-3" style="width:260px" alt="alt">
+
+  <div class="media-body">
+    <h2>Time 4 the 🌍</h2>
+    <p> <h3>Nous, citoyens du monde entier, ne sommes pas résignés face au changement climatique.</h3></p>
+    <p> <h4>Rejoignez la plus grande communauté citoyenne dédiée à l’action mondiale contre les gaz à effet de serre.</h4></p>
+	
+  </div>
+</div>
+ 
+ 
+  <div class="media">
+    <div class="media-left">
+      
+      <img src="Photo id.jpg" class="media-object" style="width:70px" alt="alt">
+    </div>
+    <div class="media-body">
+      <h5 class="media-heading">Renaud Bernard </h5>
+      <p><h6>Rédacteur-en-chef</h6></p>
+	  <p><h6>Membre depuis 4 heures</h6>
+    </div>
+  </div>
+  <hr>
+  
+ 
+  <div class="media">
+    <div class="media-body">
+      <h5 class="media-heading">Louise Aubery </h5>
+      <p><h6>créatrice de contenu pour "my better self"</h6></p>
+	  <p><h6>Membre depuis 1 an</h6></p>
+    </div>
+    <div class="media-right">
+      <img src="louise-aubery.jpg" class="media-object" style="width:70px" alt="alt">
+    </div>
+  </div>
+</div>
+
+</footer>
+   
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                
+                
+                
+              
+        </body>
 </html>
+
+

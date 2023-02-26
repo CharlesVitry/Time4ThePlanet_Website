@@ -39,7 +39,7 @@ public class PaiementController {
         }
 
         model.addAttribute("memberId", member.getE_mail());
-        return "redirect:/payment?memberId=" + member.getE_mail();
+        return "redirect:/paiement?memberId=" + member.getE_mail();
 
     }
 
@@ -47,7 +47,7 @@ public class PaiementController {
     public String showPaymentPage(@RequestParam("memberId") String memberId, Model model) {
 
         model.addAttribute("memberId", memberId);
-        return "payment";
+        return "paiement";
     }
 
     @PostMapping("/submit-payment")
@@ -56,6 +56,6 @@ public class PaiementController {
         dao_parts.create_paiement(memberId, amount);
 
         model.addAttribute("successMessage", "Payment successful. Thank you!");
-        return "payment";
+        return "paiement";
     }
 }

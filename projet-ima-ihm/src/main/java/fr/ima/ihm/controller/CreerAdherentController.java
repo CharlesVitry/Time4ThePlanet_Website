@@ -33,7 +33,7 @@ public class CreerAdherentController {
 			return "redirect:/list";
 		} else {
 			model.addAttribute("errorMessage", "Vous devez être majeur pour vous inscrire.");
-			return "inscription";
+			return "accueil";
 		}
     }	
 	
@@ -45,7 +45,7 @@ public class CreerAdherentController {
 		
 
 		
-		return "inscription";
+		return "accueil";
 		
 	}
 

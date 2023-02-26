@@ -1,53 +1,191 @@
 <!DOCTYPE html>
-
-<html xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-  <title>Liste des Adhérents</title>
-  <!-- Link Bootstrap CSS -->
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<html lang="fr" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:th="http://www.w3.org/1999/xhtml">
+        <head>
+                <meta charset="utf-8" />
+                <title>Time 4 The Planet</title>
+              
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-</head> <body> <div class="container">
-  <h1>Liste des Adhérents</h1> <table class="table">
-  <thead> <tr>
-    <th>gender</th>
-    <th>firstName</th>
-    <th>lastName</th>
-    <th>birthDate</th>
-  </tr>
-  </thead>
-  <tbody>
-  <!-- Loop through adherents and display each row -->
-<!--  <c:forEach items="${adherents}" var="adherent">-->
-<!--    <tr> <td>${adherent.gender}</td>-->
-<!--      <td>${adherent.firstName}</td>-->
-<!--      <td>${adherent.lastName}</td>-->
-<!--      <td>${adherent.birthDate}</td> </tr>-->
-<!--  </c:forEach>-->
+                <style>
+                                 footer {
+      background-color:  #505151
 
-  <tr th:each="adherent: ${adherents}">
-    <td th:text="${adherent.gender}">Oranges</td>
-    <td th:text="${adherent.firstName}">Bananes</td>
-    <td th:text="${adherent.lastName}">Pommes</td>
-    <td th:text="${adherent.birthDate}">Pommes</td>
-  </tr>
-  <tr>
-  </tbody>
-</table>
-  <div class="container">
-    <h1>Total Parts</h1>
-    <p>The total number of parts is: <span th:text="${somme}"></span></p>
-    <a href="/adherents" class="btn btn-primary">Back to Adherents List</a>
+;
+      color: white;
+      padding: 20px;
+    }
+    
+                      
+        
+    
+     @media screen and (max-width: 750px) {
+      .sidenav {
+        height: auto;
+        padding: 20px;
+      }
+  
+    .row.content {height: 500px}
+    
+  
+    .sidenav {
+      padding-top: 15px;
+      height: 100%;
+    }
+    
+  
+    footer {
+      color: white;
+      padding: 15px;
+    }
+    
+   
+      .row.content {height:auto;} 
+          .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    }
+        
+        
+  </style>
+        </head>
+        
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+            <div class="navbar-header">
+            <a class="navbar-brand" href="accueil.html">Time 4 the 🌍</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="accueil.html"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
+                <li><a href="listeAdherents.html">I joined 💪</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="listeAdherents.html"><span class="glyphicon glyphicon-user"></span> Rejoignez-Nous !</a></li>
+            </ul>
+             </div>
+        </nav>
+        
+        <body>
+
+                
+                <div class="container-fluid text-center">    
+
+    <div class="col-sm-2 sidenav">
+     <img src="logo.png" class="align-self-start mr-3" style="width:160px" alt="alt">
+    </div>
+
+       <span style="left"> 
+               
+       
+                  
+                            <div class="container">
+                                <h1>Liste des Adhérents</h1> 
+                                <img src="joined.png" class="align-self-start mr-3" style="width:160px" alt="alt">
+                                
+                                
+                                
+                                <table class="table">
+                                <thead> <tr>
+                                  <th>Genre</th>
+                                  <th>Prénom</th>
+                                  <th>Nom</th>
+                                  <th>Date de naissance</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                              
+                              
+                                <tr th:each="adherent: ${adherents}">
+                                  <td th:text="${adherent.gender}">Oranges</td>
+                                  <td th:text="${adherent.firstName}">Bananes</td>
+                                  <td th:text="${adherent.lastName}">Pommes</td>
+                                  <td th:text="${adherent.birthDate}">Pommes</td>
+                                </tr>
+                                <tr>
+                                </tbody>
+                              </table>
+                                <div class="container">
+                                  <h1>Total investis</h1>
+                                  <p>La somme total des parts est de : <span th:text="${somme}"></span></p>
+                                  <a href="/adherents" class="btn btn-primary">Rejoindre le mouvement !</a>
+                                    <br></br>
+                                  <h4>Vous aussi rejoignez l'aventure</h4>
+                                  <form th:action="@{/verify-email}" method="get"><input type="email" name="email" required>
+                                      <button type="submit">Valider mon adresse mail</button>
+                                  </form>
+                                  <div th:if="${errorMessage}" style="color: red"><p th:text="${errorMessage}"></p></div> 
+                    
+			
+                            
+                            
+                            </div>
+                            <br> </br>
+                                
+                  
+                   
+                </span> <!--LE CORPS DE LA PAGE FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN-->
+    </div>
+    </div>
+
+<footer class="container-fluid text-center">
+ <div class="container">
+
+<div class="media">
+  <img src="logo2.png" class="align-self-start mr-3" style="width:260px" alt="alt">
+  <div class="media-body">
+    <h2>Time 4 the 🌍</h2>
+    <p> <h3>Nous, citoyens du monde entier, ne sommes pas résignés face au changement climatique.</h3></p>
+    <p> <h4>Rejoignez la plus grande communauté citoyenne dédiée à l’action mondiale contre les gaz à effet de serre.</h4></p>
+	
   </div>
+</div>
+ 
+ 
+  <div class="media">
+    <div class="media-left">
+      
+      <img src="Photo id.jpg" class="media-object" style="width:70px" alt="alt">
+    </div>
+    <div class="media-body">
+      <h5 class="media-heading">Renaud Bernard </h5>
+      <p><h6>Rédacteur-en-chef</h6></p>
+	  <p><h6>Membre depuis 4 heures</h6>
+    </div>
+  </div>
+  <hr>
+  
+ 
+  <div class="media">
+    <div class="media-body">
+      <h5 class="media-heading">Louise Aubery </h5>
+      <p><h6>créatrice de contenu pour "my better self"</h6></p>
+	  <p><h6>Membre depuis 1 an</h6></p>
+    </div>
+    <div class="media-right">
+      <img src="louise-aubery.jpg" class="media-object" style="width:70px" alt="alt">
+    </div>
+  </div>
+</div>
 
-
-</div> <!-- Link Bootstrap JS and jQuery -->
+</footer>
+           
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
 
 </script>
-</body>
+                
+              
+        </body>
+
+        
 </html>
+
+
