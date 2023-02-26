@@ -26,16 +26,16 @@ public class PaiementController {
         Adherents member = dao_adherent.findByEmail(email);
 
         if(member == null){
-            String errorMessage = "Invalid email address. : "+email+" Please try again."
-                    + "<a href='/register' style='text-decoration: none;'>Not registered yet? Register now!</a>";
+            String errorMessage = "Adresse email invalide: "+email+" Essayez à nouveau."
+                    + "<a href='/index' style='text-decoration: none;'>Pas encore inscrit ?</a>";
             model.addAttribute("errorMessage", errorMessage);
-            return "verifyEmail";
+            return "listeAdherents";
         }
 
         if (!member.isResidentFrench()){
-            String errorMessage = "Sorry, you are not FRENCH resident.";
+            String errorMessage = "Désolé, vous n'êtes pas résident français. Vous ne pouvez pas participer à l'opération.";
             model.addAttribute("errorMessage", errorMessage);
-            return "verifyEmail";
+            return "listeAdherents";
         }
 
         model.addAttribute("memberId", member.getE_mail());
@@ -55,7 +55,7 @@ public class PaiementController {
 
         dao_parts.create_paiement(memberId, amount);
 
-        model.addAttribute("successMessage", "Payment successful. Thank you!");
+        model.addAttribute("successMessage", "Paiement réussi, la planète vous dit merci !");
         return "paiement";
     }
 }
