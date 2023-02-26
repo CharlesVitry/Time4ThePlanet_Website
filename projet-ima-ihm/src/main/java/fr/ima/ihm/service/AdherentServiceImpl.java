@@ -79,11 +79,11 @@ public class AdherentServiceImpl implements AdherentService {
 
 	@Override
 	public Adherents findByEmail(String email) {
-		String url = "http://localhost:4500/adherent/email/" + email;
+		String url = "http://localhost:4500/adherent/" + email;
 
 		// Appel du WS Rest
 		ResponseEntity <Adherents> response = restTemplate.getForEntity(url, Adherents.class);
-
+		// http://localhost:4550/verify-email?email=charles.vitry77@gmail.com
 		return response.getBody();
 	}
 

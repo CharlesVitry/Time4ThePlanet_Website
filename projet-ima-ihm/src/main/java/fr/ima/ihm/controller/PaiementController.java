@@ -26,9 +26,9 @@ public class PaiementController {
         Adherents member = dao_adherent.findByEmail(email);
         if (member != null) {
             model.addAttribute("memberId", member.getE_mail());
-            return "redirect:/payment";
+            return "redirect:/payment?memberId=" + member.getE_mail();
         } else {
-            model.addAttribute("errorMessage", "Invalid email address. Please try again.");
+            model.addAttribute("errorMessage", "Invalid email address. : "+email+" Please try again.");
             return "verifyEmail";
         }
     }
@@ -41,7 +41,9 @@ public class PaiementController {
 
     @PostMapping("/submit-payment")
     public String submitPayment(@RequestParam("memberId") String memberId, @RequestParam("amount") int amount, Model model) {
-        // Code to process payment and update member's account
+
+        dao_parts.create_paiement(memberId, amount);
+
         model.addAttribute("successMessage", "Payment successful. Thank you!");
         return "payment";
     }
