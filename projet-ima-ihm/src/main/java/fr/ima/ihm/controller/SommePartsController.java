@@ -15,7 +15,7 @@ public class SommePartsController {
     @GetMapping("/sum-nombre")
     public String afficherSommeInvestis(Model model) {
         model.addAttribute("somme", dao.sum_nombre());
-        return "sommeInvectis";
+        return "listeAdherents"; // affichage sur la même page que la liste des adhérents.
     }
 
 
