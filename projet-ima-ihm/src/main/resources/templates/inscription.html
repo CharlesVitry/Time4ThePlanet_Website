@@ -41,6 +41,7 @@
         <div class="form-group">
             <input type="submit" value="Enregistrer un étudiant" class="btn btn-primary">
         </div>
+        <div th:if="${errorMessage}" style="color: red"><p th:text="${errorMessage}"></p></div>
     </form>
 </div>
 

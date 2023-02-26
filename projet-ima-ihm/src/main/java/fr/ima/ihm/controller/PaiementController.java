@@ -24,17 +24,28 @@ public class PaiementController {
     @RequestMapping(value ="/verify-email", method = RequestMethod.GET)
     public String verifyEmail(@RequestParam("email") String email, Model model) {
         Adherents member = dao_adherent.findByEmail(email);
-        if (member != null) {
-            model.addAttribute("memberId", member.getE_mail());
-            return "redirect:/payment?memberId=" + member.getE_mail();
-        } else {
-            model.addAttribute("errorMessage", "Invalid email address. : "+email+" Please try again.");
+
+        if(member == null){
+            String errorMessage = "Invalid email address. : "+email+" Please try again."
+                    + "<a href='/register' style='text-decoration: none;'>Not registered yet? Register now!</a>";
+            model.addAttribute("errorMessage", errorMessage);
             return "verifyEmail";
         }
+
+        if (!member.isResidentFrench()){
+            String errorMessage = "Sorry, you are not FRENCH resident.";
+            model.addAttribute("errorMessage", errorMessage);
+            return "verifyEmail";
+        }
+
+        model.addAttribute("memberId", member.getE_mail());
+        return "redirect:/payment?memberId=" + member.getE_mail();
+
     }
 
     @RequestMapping(value = "/payment")
     public String showPaymentPage(@RequestParam("memberId") String memberId, Model model) {
+
         model.addAttribute("memberId", memberId);
         return "payment";
     }

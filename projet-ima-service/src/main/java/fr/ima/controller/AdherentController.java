@@ -38,6 +38,7 @@ public class AdherentController {
 		
 		List<Adherents> list = new ArrayList<Adherents>();
 		for (Iterator<Adherent> iterator = e.iterator(); iterator.hasNext();) {
+
 			list.add(createDTOFromAdherentDAO(iterator.next()));
 		}
 		

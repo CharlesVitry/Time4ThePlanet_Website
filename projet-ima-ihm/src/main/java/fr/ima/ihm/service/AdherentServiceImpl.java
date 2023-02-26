@@ -48,9 +48,15 @@ public class AdherentServiceImpl implements AdherentService {
 		List<Adherents> ret = new ArrayList<Adherents>();
 		for (Iterator<fr.ima.ihm.service.dto.Adherents> iterator = adherents.iterator(); iterator.hasNext();) {
 			fr.ima.ihm.service.dto.Adherents adherent = (fr.ima.ihm.service.dto.Adherents) iterator.next();
-			
-			// On vérifie que l'adhérents veut bien être afficher 
-			if(adherent.isPrintListing()) {
+
+			String url_Adherent = "http://localhost:4500/parts/adherent/" + adherent.getE_mail();
+
+			List<fr.ima.ihm.service.dto.Shares> parts = mapper.convertValue(restTemplate.getForObject(url_Adherent,
+					List.class,
+					url_Adherent), new TypeReference<List<fr.ima.ihm.service.dto.Shares>>(){});
+
+			// On vérifie que l'adhérents veut bien être afficher et que sa liste de parts n'est pas vide
+			if(adherent.isPrintListing() && parts.size() > 0) {
 				ret.add(convertAdherentsDTOtoBean(adherent));
 			}
 		}

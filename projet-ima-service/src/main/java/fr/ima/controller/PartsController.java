@@ -60,9 +60,9 @@ public class PartsController {
         }
     }
 
-    @GetMapping("/parts/adherent/{id}")
-    public ResponseEntity<List<Shares>> getPartsByAdherentId(@PathVariable int id) {
-        Optional<Adherent> adherentOptional = adherentRepository.findById(String.valueOf((long) id));
+    @GetMapping("/parts/adherent/{email}")
+    public ResponseEntity<List<Shares>> getPartsByAdherentId(@PathVariable String email) {
+        Optional<Adherent> adherentOptional = Optional.ofNullable(adherentRepository.findByEmail(email));
         if (adherentOptional.isPresent()) {
             List<Parts> partsList = partsRepository.findByAdherent(adherentOptional.get());
             List<Shares> partsDTOList = new ArrayList<>();

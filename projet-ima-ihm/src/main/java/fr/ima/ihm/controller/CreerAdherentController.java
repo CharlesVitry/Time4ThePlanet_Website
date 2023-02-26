@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import fr.ima.ihm.beans.Adherents;
 import fr.ima.ihm.service.AdherentService;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Date;
+
 @Controller
 public class CreerAdherentController {
 
@@ -21,10 +26,15 @@ public class CreerAdherentController {
 	@RequestMapping(
 			  value = "/save", 
 			  method = RequestMethod.POST)
-    public String creerAdherent(@ModelAttribute("adherent") Adherents adherents) {
-		dao.creer(adherents);
-		
-        return "redirect:/list";
+    public String creerAdherent(@ModelAttribute("adherent") Adherents adherents, Model model) {
+
+		if(isMajeur(adherents.getBirthDate())){
+			dao.creer(adherents);
+			return "redirect:/list";
+		} else {
+			model.addAttribute("errorMessage", "Vous devez être majeur pour vous inscrire.");
+			return "inscription";
+		}
     }	
 	
 	@RequestMapping(
@@ -37,5 +47,21 @@ public class CreerAdherentController {
 		
 		return "inscription";
 		
-	}		
+	}
+
+	// controle de surface
+	public static boolean isMajeur(Date date) {
+		LocalDate mtn = LocalDate.now();
+		Instant instant = date.toInstant();
+		LocalDate dateLocal = instant.atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+
+		Period age = Period.between(dateLocal, mtn);
+		if (age.getYears() >= 18) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
 }
