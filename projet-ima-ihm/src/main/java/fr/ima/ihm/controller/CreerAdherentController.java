@@ -33,19 +33,19 @@ public class CreerAdherentController {
 			return "redirect:/list";
 		} else {
 			model.addAttribute("errorMessage", "Vous devez être majeur pour vous inscrire.");
-			return "accueil";
+			return "index";
 		}
     }	
 	
 	@RequestMapping(
-			  value = "/register", 
+			  value = "/index",
 			  method = RequestMethod.GET)
 	public String afficherFormulaireInscription(Model model) {
 		model.addAttribute("adherents", new Adherents());
 		
 
 		
-		return "accueil";
+		return "index";
 		
 	}
 
