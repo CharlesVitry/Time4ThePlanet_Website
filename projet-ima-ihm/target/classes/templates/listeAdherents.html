@@ -60,14 +60,14 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
             <div class="navbar-header">
-            <a class="navbar-brand" href="accueil.html">Time 4 the 🌍</a>
+            <a class="navbar-brand" href="http://localhost:4550">Time 4 the 🌍</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="accueil.html"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
-                <li><a href="listeAdherents.html">I joined 💪</a></li>
+                <li class="active"><a href="http://localhost:4550"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
+                <li><a href="http://localhost:4550/list">I joined 💪</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="listeAdherents.html"><span class="glyphicon glyphicon-user"></span> Rejoignez-Nous !</a></li>
+                <li><a href="http://localhost:4550/list"><span class="glyphicon glyphicon-user"></span> Rejoignez-Nous !</a></li>
             </ul>
              </div>
         </nav>
@@ -114,7 +114,6 @@
                                 <div class="container">
                                   <h1>Total investis</h1>
                                   <p>La somme total des parts est de : <span th:text="${somme}"></span></p>
-                                  <a href="/adherents" class="btn btn-primary">Rejoindre le mouvement !</a>
                                     <br></br>
                                   <h4>Vous aussi rejoignez l'aventure</h4>
                                   <form th:action="@{/verify-email}" method="get"><input type="email" name="email" required>
@@ -130,7 +129,7 @@
                                 
                   
                    
-                </span> <!--LE CORPS DE LA PAGE FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN-->
+                </div>  </span> <!--LE CORPS DE LA PAGE FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN-->
     </div>
     </div>
 

@@ -43,7 +43,7 @@ public class PaiementController {
 
     }
 
-    @RequestMapping(value = "/payment")
+    @RequestMapping(value = "/paiement")
     public String showPaymentPage(@RequestParam("memberId") String memberId, Model model) {
 
         model.addAttribute("memberId", memberId);
