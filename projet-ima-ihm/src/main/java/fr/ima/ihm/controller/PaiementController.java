@@ -1,0 +1,48 @@
+package fr.ima.ihm.controller;
+
+import fr.ima.ihm.service.PartsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import fr.ima.ihm.service.PartsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+import fr.ima.ihm.beans.Adherents;
+import fr.ima.ihm.service.AdherentService;
+
+@Controller
+public class PaiementController {
+    @Autowired
+    private AdherentService dao_adherent; // Appelle à l'interface du service "Etudiant" : lister, créer, MAJ, etc....
+
+    @Autowired
+    private PartsService dao_parts;
+
+    @RequestMapping(value ="/verify-email", method = RequestMethod.GET)
+    public String verifyEmail(@RequestParam("email") String email, Model model) {
+        Adherents member = dao_adherent.findByEmail(email);
+        if (member != null) {
+            model.addAttribute("memberId", member.getE_mail());
+            return "redirect:/payment";
+        } else {
+            model.addAttribute("errorMessage", "Invalid email address. Please try again.");
+            return "verifyEmail";
+        }
+    }
+
+    @RequestMapping(value = "/payment")
+    public String showPaymentPage(@RequestParam("memberId") String memberId, Model model) {
+        model.addAttribute("memberId", memberId);
+        return "payment";
+    }
+
+    @PostMapping("/submit-payment")
+    public String submitPayment(@RequestParam("memberId") String memberId, @RequestParam("amount") int amount, Model model) {
+        // Code to process payment and update member's account
+        model.addAttribute("successMessage", "Payment successful. Thank you!");
+        return "payment";
+    }
+}

@@ -76,7 +76,17 @@ public class AdherentServiceImpl implements AdherentService {
 		
 		return ret;
 	}
-	
+
+	@Override
+	public Adherents findByEmail(String email) {
+		String url = "http://localhost:4500/adherent/email/" + email;
+
+		// Appel du WS Rest
+		ResponseEntity <Adherents> response = restTemplate.getForEntity(url, Adherents.class);
+
+		return response.getBody();
+	}
+
 	/**
 	 * Convertit un objet Model IHM en objet DTO pour appeler le service ima-service
 	 * @param bean

@@ -23,5 +23,6 @@ public interface AdherentService {
 	 * @return
 	 */
 	public Adherents creer(Adherents adherent);
-	
+
+    Adherents findByEmail(String email);
 }

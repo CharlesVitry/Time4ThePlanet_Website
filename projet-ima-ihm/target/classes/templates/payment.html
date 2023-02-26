@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment</title>
+</head>
+<body>
+<h1>Enter payment details</h1>
+<form th:action="@{/submit-payment}" method="post">
+    <input type="hidden" name="memberId" th:value="${memberId}">
+    <label>Amount:</label>
+    <input type="number" name="amount" step="0.01" min="0" required>
+    <button type="submit">Submit</button>
+</form>
+<div th:if="${successMessage}" style="color: green">
+    <p th:text="${successMessage}"></p>
+</div>
+</body>
+</html>
